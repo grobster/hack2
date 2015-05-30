@@ -11,10 +11,19 @@ public class FileFinder {
 	private Path startingPath;
 	private ArrayList<Path> foundFiles;
 	private String fileEnding;
+	private Path toServerPath;
 	
 	public FileFinder() {
 		foundFiles = new ArrayList<>();
 		fileEnding = ".jpg"; // by default, file ending is jpg
+		toServerPath = Paths.get("C:\\cl_temp");
+	}
+	
+	public FileFinder(Path startingPath) {
+		this.startingPath = startingPath;
+		foundFiles = new ArrayList<>();
+		fileEnding = ".jpg"; // by default, file ending is jpg
+		toServerPath = Paths.get("C:\\cl_temp");
 	}
 	
 	public void setStartingPath(Path startingPath) {
@@ -44,6 +53,14 @@ public class FileFinder {
 			}
 			return FileVisitResult.CONTINUE;
 		}
+	}
+	
+	public void setToServerPath(Path toServerPath) {
+		this.toServerPath = toServerPath;
+	}
+	
+	public Path getToServerPath() {
+		return toServerPath;
 	}
 	
 	public String getfileEnding() {
