@@ -7,6 +7,11 @@ import java.nio.file.*;
 public class Client {
 	File file;
 	File[] toServerDirectory;
+	private Path toServerPath = Paths.get("C:\\cl_temp");
+	
+	public Client() {
+		createToServerDirectory();
+	}
 	
 	public void go() {
 		try {
@@ -31,6 +36,18 @@ public class Client {
 			ex.printStackTrace();
 		}
 		
+	}
+	
+	private boolean createToServerDirectory() {
+		try {
+			if (!Files.exists(toServerPath)) {
+				Files.createDirectory(toServerPath);
+				return Files.exists(toServerPath);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return false;
 	}
 
 	public static void main(String[] args) {
