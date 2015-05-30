@@ -85,7 +85,8 @@ public class FileFinder {
 	}
 	
 	public static void main(String[] args) {
-		Path startingPath = Paths.get("C:\\");
+		Path startingPath = Paths.get("C:\\Users\\quarles\\Pictures\\home\\ava");
 		FileFinder ff = new FileFinder(startingPath);
+		ff.search();
 	}
 }
