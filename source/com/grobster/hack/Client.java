@@ -13,12 +13,13 @@ public class Client {
 	
 	public Client() {
 		host = "127.0.0.1";
+		port = 4242;
 		createToServerDirectory(); //creates temp folder used to hold jpg prior to sending to server
 	}
 	
 	public void go() {
 		try {
-			Socket s = new Socket("127.0.0.1", 4242);
+			Socket s = new Socket(host, port);
 			
 			file = new File("C:\\Users\\Android\\Desktop\\pillow\\toserver\\IMAG3215.jpg");
 			
