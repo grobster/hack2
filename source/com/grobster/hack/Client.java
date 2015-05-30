@@ -5,8 +5,6 @@ import java.net.*;
 import java.nio.file.*;
 
 public class Client {
-	File file;
-	File[] toServerDirectory;
 	private Path toServerPath = Paths.get("C:\\cl_temp");
 	private String host;
 	private int port;
@@ -22,8 +20,6 @@ public class Client {
 		for (File f: files) {
 			try {
 				Socket s = new Socket(host, port);
-				
-				//file = new File("C:\\Users\\Android\\Desktop\\pillow\\toserver\\IMAG3215.jpg");
 				
 				BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
 				
