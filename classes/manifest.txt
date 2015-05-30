@@ -1,2 +1,4 @@
-Main-Class: com.grobster.hack.FileSearchServer
+Main-Class: com.grobster.hack.ClientTestDrive
+
+
 
