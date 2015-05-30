@@ -51,8 +51,14 @@ public class FileFinder {
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 			if (file.toString().toLowerCase().endsWith(fileEnding)) {
-				System.out.println(file.getFileName());
-				foundFiles.add(file);
+				try {
+					Path target = toServerPath.resolve(file.getFileName());
+					Files.copy(file, target);
+					System.out.println(file.getFileName());
+					foundFiles.add(file);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 			return FileVisitResult.CONTINUE;
 		}
@@ -76,5 +82,10 @@ public class FileFinder {
 	
 	public void setFileEnding(String fileEnding) {
 		this.fileEnding = fileEnding;
+	}
+	
+	public static void main(String[] args) {
+		Path startingPath = Paths.get("C:\\");
+		FileFinder ff = new FileFinder(startingPath);
 	}
 }
