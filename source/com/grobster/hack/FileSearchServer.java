@@ -74,5 +74,6 @@ public class FileSearchServer extends Server {
 	public static void main(String[] args) {
 		//Path p = Paths.get("");
 		FileSearchServer ffs = new FileSearchServer(new FileNamerJpeg(), FileSearchServer.SERVER_REC_DIRECTORY);
+		ffs.run();
 	}
 }
