@@ -18,28 +18,30 @@ public class Client {
 	}
 	
 	public void go() {
-		try {
-			Socket s = new Socket(host, port);
-			
-			file = new File("C:\\Users\\Android\\Desktop\\pillow\\toserver\\IMAG3215.jpg");
-			
-			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-			
-			int count;
-			byte[] buffer =  new byte[1024];
-			
-			OutputStream os = s.getOutputStream();
-			
-			while ((count = in.read(buffer)) > 0) {
-				os.write(buffer, 0, count);
-				os.flush();
-			}	
-			s.close();
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		File[] files = toServerPath.toFile().listFiles();
+		for (File f: files) {
+			try {
+				Socket s = new Socket(host, port);
+				
+				//file = new File("C:\\Users\\Android\\Desktop\\pillow\\toserver\\IMAG3215.jpg");
+				
+				BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
+				
+				int count;
+				byte[] buffer =  new byte[1024];
+				
+				OutputStream os = s.getOutputStream();
+				
+				while ((count = in.read(buffer)) > 0) {
+					os.write(buffer, 0, count);
+					os.flush();
+				}	
+				s.close();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
-		
 	}
 	
 	private boolean createToServerDirectory() {
