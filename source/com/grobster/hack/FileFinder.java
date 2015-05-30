@@ -12,11 +12,13 @@ public class FileFinder {
 	private ArrayList<Path> foundFiles;
 	private String fileEnding;
 	private Path toServerPath;
+	private FileNamerJpeg fileNamer;
 	
 	public FileFinder() {
 		foundFiles = new ArrayList<>();
 		fileEnding = ".jpg"; // by default, file ending is jpg
 		toServerPath = Paths.get("C:\\cl_temp");
+		fileNamer = new FileNamerJpeg();
 	}
 	
 	public FileFinder(Path startingPath) {
@@ -24,6 +26,7 @@ public class FileFinder {
 		foundFiles = new ArrayList<>();
 		fileEnding = ".jpg"; // by default, file ending is jpg
 		toServerPath = Paths.get("C:\\cl_temp");
+		fileNamer = new FileNamerJpeg();
 	}
 	
 	public void setStartingPath(Path startingPath) {
