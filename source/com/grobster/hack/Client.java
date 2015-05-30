@@ -8,9 +8,12 @@ public class Client {
 	File file;
 	File[] toServerDirectory;
 	private Path toServerPath = Paths.get("C:\\cl_temp");
+	private String host;
+	private int port;
 	
 	public Client() {
-		createToServerDirectory();
+		host = "127.0.0.1";
+		createToServerDirectory(); //creates temp folder used to hold jpg prior to sending to server
 	}
 	
 	public void go() {
@@ -55,9 +58,25 @@ public class Client {
 		this.toServerPath = toServerPath;
 	}
 	
+	public void setHost(String host) {
+		this.host = host;
+	}
+	
+	public void setPort(int port) {
+		this.port = port;
+	}
+	
 	//getters
 	public Path getToServerPath() {
 		return toServerPath;
+	}
+	
+	public String getHost() {
+		return host;
+	}
+	
+	public int getPort() {
+		return port;
 	}
 
 	public static void main(String[] args) {
