@@ -49,6 +49,16 @@ public class Client {
 		}
 		return false;
 	}
+	
+	//setters
+	public void setToServerPath(Path toServerPath) {
+		this.toServerPath = toServerPath;
+	}
+	
+	//getters
+	public Path getToServerPath() {
+		return toServerPath;
+	}
 
 	public static void main(String[] args) {
 		Client client = new Client();
