@@ -81,6 +81,10 @@ public class FileSearchServer extends Server {
 		return port;
 	}
 	
+	public Path getDirPath() {
+		return dirPath;
+	}
+	
 	public static void main(String[] args) {
 		FileSearchServer ffs = new FileSearchServer(new FileNamerJpeg(), FileSearchServer.SERVER_REC_DIRECTORY);
 		ffs.run();
