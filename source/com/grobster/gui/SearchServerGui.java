@@ -17,6 +17,7 @@ public class SearchServerGui implements ActionListener {
 	
 	public void createView(int fieldSize, int portFieldSize, String buttonName, String outputString, String portString) {
 		gui.createView(fieldSize, portFieldSize, buttonName, outputString, portString);
+		gui.getRunButton().addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
