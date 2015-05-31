@@ -40,6 +40,11 @@ public class ServerGui extends SimpleGui {
 		createView();
 	}
 	
+	public void clearTextFields() {
+		outputField.setText("");
+		portField.setText("");
+	}
+	
 	//getters
 	public JTextField getOutputField() {
 		return outputField;
