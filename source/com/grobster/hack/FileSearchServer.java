@@ -40,7 +40,7 @@ public class FileSearchServer extends Server {
 	public void run() {
 		try {
 			ServerSocket serverSocket = new ServerSocket(4242);
-			System.out.println("server running...");
+			System.out.println("server running on port: " + getPortNumber());
 			while (true) {
 				
 				Socket s = serverSocket.accept();	
