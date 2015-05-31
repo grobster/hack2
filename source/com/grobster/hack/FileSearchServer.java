@@ -11,8 +11,8 @@ public class FileSearchServer extends Server {
 	private Path dirPath;
 	private int port;
 	
-	public FileSearchServer(int portNumber, FileNamerJpeg fileNamer, Path dirPath) {
-		super(portNumber);
+	public FileSearchServer(int port, FileNamerJpeg fileNamer, Path dirPath) {
+		this.port = port;
 		this.fileNamer = fileNamer;
 		this.dirPath = dirPath;
 		makeTempDirectory();
