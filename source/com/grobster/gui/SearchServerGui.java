@@ -37,6 +37,6 @@ public class SearchServerGui implements ActionListener {
 		Path ouputPath = Paths.get("C:\\");
 		FileSearchServer server = new FileSearchServer(4242, new FileNamerJpeg(), ouputPath);
 		SearchServerGui ssg = new SearchServerGui(gui, server);
-		ssg.createView(20, 10, "Run", "Output Direcotry: ", "Port: ");
+		ssg.createView(20, 10, "Run", "Output Directory: ", "Port: ");
 	}
 }
