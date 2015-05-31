@@ -59,7 +59,6 @@ public class FileSearchServer extends Server {
 					fos.write(buffer, 0, count);
 				}
 				fos.close();
-				//socket.close();
 			}	
 		} catch(Exception ex) {
 			
