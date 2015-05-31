@@ -5,7 +5,7 @@ import java.net.*;
 import java.nio.file.*;
 
 public class Client {
-	private Path toServerPath = Paths.get("C:\\cl_temp");
+	private Path toServerPath = Paths.get("C:\\cl_temp"); // directory that holds files to be transferred to server
 	private String host;
 	private int port;
 	
