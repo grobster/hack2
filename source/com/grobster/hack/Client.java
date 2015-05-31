@@ -77,9 +77,4 @@ public class Client {
 	public int getPort() {
 		return port;
 	}
-
-	public static void main(String[] args) {
-		Client client = new Client();
-		client.go();
-	}
 }
