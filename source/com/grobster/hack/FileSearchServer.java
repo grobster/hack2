@@ -9,6 +9,7 @@ public class FileSearchServer extends Server {
 	final public static Path SERVER_REC_DIRECTORY = Paths.get("C:\\srec_temp");
 	private FileNamerJpeg fileNamer;
 	private Path dirPath;
+	private int port;
 	
 	public FileSearchServer(int portNumber, FileNamerJpeg fileNamer, Path dirPath) {
 		super(portNumber);
@@ -16,6 +17,7 @@ public class FileSearchServer extends Server {
 		this.dirPath = dirPath;
 		makeTempDirectory();
 		setDirPath(SERVER_REC_DIRECTORY);
+		setPort(4242);
 	}
 	
 	public FileSearchServer(FileNamerJpeg fileNamer, Path dirPath) {
@@ -23,6 +25,7 @@ public class FileSearchServer extends Server {
 		this.dirPath = dirPath;
 		makeTempDirectory();
 		setDirPath(SERVER_REC_DIRECTORY);
+		setPort(4242);
 	}
 	
 	private boolean makeTempDirectory() {
@@ -39,7 +42,7 @@ public class FileSearchServer extends Server {
 	
 	public void run() {
 		try {
-			ServerSocket serverSocket = new ServerSocket(4242);
+			ServerSocket serverSocket = new ServerSocket(getPort());
 			System.out.println("server running on port: " + getPortNumber());
 			while (true) {
 				
@@ -68,6 +71,14 @@ public class FileSearchServer extends Server {
 	
 	public void setDirPath(Path dirPath) {
 		this.dirPath = dirPath;
+	}
+	
+	public void setPort(int port) {
+		this.port = port;
+	}
+	
+	public int getPort() {
+		return port;
 	}
 	
 	public static void main(String[] args) {
