@@ -31,7 +31,7 @@ public class SearchServerGui implements ActionListener {
 			gui.getPortRunningLabel().setText(ServerGui.PORT_RUNNING_STRING + server.getPort());
 			server.run();
 		} else if (e.getSource() == gui.getStopServerButton()) {
-			throw new RuntimeException("Server Stopped");
+			throw new ServerStoppedException("Server Stopped");
 		}
 	}
 	
