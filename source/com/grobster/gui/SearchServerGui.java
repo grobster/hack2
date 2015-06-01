@@ -18,6 +18,7 @@ public class SearchServerGui implements ActionListener {
 	public void createView(int fieldSize, int portFieldSize, String buttonName, String outputString, String portString) {
 		gui.createView(fieldSize, portFieldSize, buttonName, outputString, portString);
 		gui.getRunButton().addActionListener(this);
+		gui.getStopServerButton().addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -29,6 +30,8 @@ public class SearchServerGui implements ActionListener {
 			gui.clearTextFields();
 			gui.getPortRunningLabel().setText(ServerGui.PORT_RUNNING_STRING + server.getPort());
 			server.run();
+		} else if (e.getSource() == gui.getStopServerButton()) {
+			throw new RuntimeException("Server Stopped");
 		}
 	}
 	
