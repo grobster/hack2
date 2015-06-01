@@ -8,6 +8,7 @@ public class ServerGui extends SimpleGui {
 	private JTextField portField;
 	private JLabel portRunningLabel;
 	private JButton runButton;
+	private JButton stopServerButton;
 	public static final String PORT_RUNNING_STRING = "Running on Port: ";
 	
 	public ServerGui(String programName, int frameWidth, int frameHeight) {
@@ -24,18 +25,21 @@ public class ServerGui extends SimpleGui {
 		portField = new JTextField(portFieldSize);
 		portRunningLabel = new JLabel(PORT_RUNNING_STRING + 4242);
 		runButton = new JButton(buttonName);
+		stopServerButton = new JButton("Stop"); // replace with a parameter instead of using a String literal for button name
 		
 		//create JPanels to hold widgets
 		JComponent outputComponent = SimpleGui.addComponentWithLabel(outputString, outputField);
 		JComponent portComponent = SimpleGui.addComponentWithLabel(portString, portField);
 		JComponent runningComponent = SimpleGui.addComponentNoLabel(portRunningLabel);
 		JComponent runButtonComponent = SimpleGui.addComponentNoLabel(runButton);
+		JComponent stopButtonComponent = SimpleGui.addComponentNoLabel(stopServerButton);
 		
 		//add JPanels to mainProgramPanel
 		getMainPanel().add(outputComponent);
 		getMainPanel().add(portComponent);
 		getMainPanel().add(runningComponent);
 		getMainPanel().add(runButtonComponent);
+		getMainPanel().add(stopButtonComponent);
 		
 		createView();
 	}
@@ -60,6 +64,10 @@ public class ServerGui extends SimpleGui {
 	
 	public JButton getRunButton() {
 		return runButton;
+	}
+	
+	public JButton getStopServerButton() {
+		return stopServerButton;
 	}
 	
 	public static void main(String[] args) {
