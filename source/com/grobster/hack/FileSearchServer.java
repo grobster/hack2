@@ -106,11 +106,17 @@ public class FileSearchServer extends Server {
 				while((count = in.read(buffer)) >= 0){
 					fos.write(buffer, 0, count);
 				}
-				fos.close();
+				
 			} catch (IOException ex) {
 				System.out.println("IO error");
 			} catch (NullPointerException ex) {
 				System.out.println("null pointer exception");
+			} finally {
+				try {
+					fos.close();
+				} catch (IOException ex) {
+					System.out.println("IO error");
+				}
 			}
 		}	
 	}
