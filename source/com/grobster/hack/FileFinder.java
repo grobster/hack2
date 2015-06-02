@@ -46,8 +46,6 @@ public class FileFinder {
 		
 	}
 	
-	// testing...  file.toString().toLowerCase().endsWith(fileEnding)
-	
 	private class FindFileVisitor extends SimpleFileVisitor<Path> {
 		
 		@Override
