@@ -4,6 +4,7 @@ import com.grobster.net.*;
 import java.io.*;
 import java.nio.file.*;
 import java.net.*;
+import java.nio.channels.*;
 
 public class FileSearchServer extends Server {
 	final public static Path SERVER_REC_DIRECTORY = Paths.get("C:\\srec_temp");
@@ -47,32 +48,72 @@ public class FileSearchServer extends Server {
 	}
 	
 	public void run() {
+		ServerSocket serverSocket = null;
+		
 		try {
-			ServerSocket serverSocket = new ServerSocket(getPort());
-			System.out.println("server running on port: " + getPort());
-			while (true) {
+			serverSocket = new ServerSocket(getPort());
+		} catch (IOException ex) {
+			System.out.println("IO exception");
+		} catch (SecurityException ex) {
+			System.out.println("security exception");
+		} catch (IllegalArgumentException ex) {
+			System.out.println("number must be between 0 and 65535 inclusive");
+		}
+		
+		System.out.println("server running on port: " + getPort());
+		while (true) {
+			Socket s = null;
+			
+			try {
+				s = serverSocket.accept();
+			} catch (SocketTimeoutException ex) {
+				System.out.println("Socket timeout");
+			} catch (SecurityException ex) {
+				System.out.println("security error");
+			} catch (IOException ex) {
+				System.out.println("IO error");
+			} catch (IllegalBlockingModeException ex) {
+				System.out.println("no connection ready to be accepted");
+			}
 				
-				Socket s = serverSocket.accept();	
+			System.out.println("file received ...");
 				
-				System.out.println("file received ...");
+			Path p = fileNamer.nameFile(dirPath);
 				
-				Path p = fileNamer.nameFile(dirPath);
-				
-				FileOutputStream fos = new FileOutputStream(p.toFile());
-				BufferedOutputStream out = new BufferedOutputStream(fos);
-				byte[] buffer = new byte[1024];
-				int count;
-				InputStream in = s.getInputStream();
-				
+			FileOutputStream fos = null;
+			
+			try {
+				fos = new FileOutputStream(p.toFile());
+			} catch (FileNotFoundException ex) {
+				System.out.println("file not found");
+			} catch (SecurityException ex) {
+				System.out.println("security exception");
+			}
+			
+			BufferedOutputStream out = new BufferedOutputStream(fos);
+			
+			byte[] buffer = new byte[1024];
+			int count;
+			InputStream in = null;
+			
+			try {
+				in = s.getInputStream();
+			} catch (IOException ex) {
+				System.out.println("IO error");
+			}
+			
+			try {
 				while((count = in.read(buffer)) >= 0){
 					fos.write(buffer, 0, count);
 				}
 				fos.close();
-			}	
-		} catch(Exception ex) {
+			} catch (IOException ex) {
+				System.out.println("IO error");
+			} catch (NullPointerException ex) {
+				System.out.println("null pointer exception");
+			}
 			
-			ex.printStackTrace();
-		}
+		}	
 	}
 	
 	public void setDirPath(Path dirPath) {
