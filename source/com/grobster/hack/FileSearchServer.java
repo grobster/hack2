@@ -34,8 +34,14 @@ public class FileSearchServer extends Server {
 				Files.createDirectory(SERVER_REC_DIRECTORY);
 				return Files.exists(SERVER_REC_DIRECTORY);
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (SecurityException ex) {
+			System.out.println("Security Exception");
+		} catch (UnsupportedOperationException ex) {
+			System.out.println("unsupported operation");
+		} catch (FileAlreadyExistsException ex) {
+			System.out.println("file already exists");
+		} catch (IOException ex) {
+			System.out.println("IO error");
 		}
 		return false;
 	}
