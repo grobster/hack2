@@ -43,7 +43,7 @@ public class FileSearchServer extends Server {
 	public void run() {
 		try {
 			ServerSocket serverSocket = new ServerSocket(getPort());
-			System.out.println("server running on port: " + getPortNumber());
+			System.out.println("server running on port: " + getPort());
 			while (true) {
 				
 				Socket s = serverSocket.accept();	
