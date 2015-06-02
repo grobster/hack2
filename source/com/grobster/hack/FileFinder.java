@@ -40,8 +40,11 @@ public class FileFinder {
 	public void search() {
 		try {
 			Files.walkFileTree(startingPath, new FindFileVisitor());
-		} catch (Exception ex) {
+		} catch (SecurityException ex) {
+			System.out.println("Security Exception thrown by walkFileTree method");
 			ex.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println("IO error");
 		}
 		
 	}
