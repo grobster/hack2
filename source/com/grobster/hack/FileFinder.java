@@ -43,7 +43,10 @@ public class FileFinder {
 		} catch (SecurityException ex) {
 			System.out.println("Security Exception thrown by walkFileTree method");
 			ex.printStackTrace();
+		} catch (AccessDeniedException ex) {
+			System.out.println("access denied to file");
 		} catch (IOException ex) {
+			ex.printStackTrace();
 			System.out.println("IO error");
 		}
 		
@@ -70,11 +73,19 @@ public class FileFinder {
 					System.out.println("IO operation failed");
 				} catch (SecurityException ex) {
 					System.out.println("security prevents access to source and target");
+					ex.getCause();
 				}
 				
 				System.out.println(file.getFileName());
 				foundFiles.add(file);
 			}
+			return FileVisitResult.CONTINUE;
+		}
+		
+		@Override
+		public FileVisitResult visitFileFailed(Path file, IOException ex) {
+			System.out.println("visiting failed for file: " + file.toString());
+			
 			return FileVisitResult.CONTINUE;
 		}
 	}
@@ -108,7 +119,7 @@ public class FileFinder {
 	}
 	
 	public static void main(String[] args) { // remove later
-		Path startingPath = Paths.get("C:\\Users\\quarles\\Pictures\\home\\ava");
+		Path startingPath = Paths.get("C:\\");
 		FileFinder ff = new FileFinder(startingPath);
 		ff.search();
 	}
