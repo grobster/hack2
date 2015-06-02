@@ -112,7 +112,6 @@ public class FileSearchServer extends Server {
 			} catch (NullPointerException ex) {
 				System.out.println("null pointer exception");
 			}
-			
 		}	
 	}
 	

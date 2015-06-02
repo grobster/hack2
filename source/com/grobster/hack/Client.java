@@ -16,26 +16,63 @@ public class Client {
 	}
 	
 	public void go() {
-		File[] files = toServerPath.toFile().listFiles();
+		File[] files = null;
+		
+		try {
+			files = toServerPath.toFile().listFiles();
+		} catch (SecurityException ex) {
+			System.out.println("security exception");
+		}
+		
+		Socket s = null;
+		
 		for (File f: files) {
 			try {
-				Socket s = new Socket(host, port);
+				s = new Socket(host, port);
+			} catch (UnknownHostException ex) {
+				System.out.println("IP Address could not be determined");
+			} catch (IOException ex) {
+				System.out.println("IO error");
+			} catch (SecurityException ex) {
+				System.out.println("security exception");
+			} catch (IllegalArgumentException ex) {
+				System.out.println("Port must be number between 0 and 65535 inclusive");
+			}
 				
-				BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
+			BufferedInputStream in = null;
+			
+			try {
+				in = new BufferedInputStream(new FileInputStream(f));
+			} catch (FileNotFoundException ex) {
+				System.out.println("File not found");
+			} catch (SecurityException ex) {
+				System.out.println("Security Exception");
+			}
 				
-				int count;
-				byte[] buffer =  new byte[1024];
-				
-				OutputStream os = s.getOutputStream();
-				
+			int count;
+			byte[] buffer =  new byte[1024];
+			
+			OutputStream os = null;
+			
+			try {
+				os = s.getOutputStream();
+			} catch(IOException ex) {
+				System.out.println("IO error");
+			}
+			
+			try {	
 				while ((count = in.read(buffer)) > 0) {
 					os.write(buffer, 0, count);
 					os.flush();
-				}	
-				s.close();
-				
-			} catch (Exception ex) {
-				ex.printStackTrace();
+				}
+			} catch (IOException ex) {
+				System.out.println("IO error");
+			} finally {
+				try {
+					s.close();
+				} catch(IOException ex) {
+					System.out.println("IO error");
+				}
 			}
 		}
 	}
