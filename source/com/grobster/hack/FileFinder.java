@@ -12,6 +12,7 @@ public class FileFinder {
 	private ArrayList<Path> foundFiles;
 	private String fileEnding;
 	private Path toServerPath;
+	private Predicate<Path> predicate;
 	
 	public FileFinder() {
 		foundFiles = new ArrayList<>();
@@ -43,11 +44,13 @@ public class FileFinder {
 		
 	}
 	
+	// testing...  file.toString().toLowerCase().endsWith(fileEnding)
+	
 	private class FindFileVisitor extends SimpleFileVisitor<Path> {
 		
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-			if (file.toString().toLowerCase().endsWith(fileEnding)) {
+			if (predicate.test(file)) {
 				try {
 					Path target = toServerPath.resolve(file.getFileName());
 					Files.copy(file, target);
@@ -79,6 +82,14 @@ public class FileFinder {
 	
 	public void setFileEnding(String fileEnding) {
 		this.fileEnding = fileEnding;
+	}
+	
+	public void setPredicate(Predicate<Path> predicate) {
+		this.predicate = predicate;
+	}
+	
+	public Predicate<Path> getPredicate() {
+		return predicate;
 	}
 	
 	public static void main(String[] args) {
