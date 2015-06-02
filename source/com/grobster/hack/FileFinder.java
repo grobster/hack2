@@ -107,7 +107,7 @@ public class FileFinder {
 		return predicate;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { // remove later
 		Path startingPath = Paths.get("C:\\Users\\quarles\\Pictures\\home\\ava");
 		FileFinder ff = new FileFinder(startingPath);
 		ff.search();
