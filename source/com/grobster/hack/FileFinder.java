@@ -18,6 +18,7 @@ public class FileFinder {
 		foundFiles = new ArrayList<>();
 		fileEnding = ".jpg"; // by default, file ending is jpg
 		toServerPath = Paths.get("C:\\cl_temp");
+		setPredicate((Path file) -> file.toString().toLowerCase().endsWith(fileEnding));
 	}
 	
 	public FileFinder(Path startingPath) {
@@ -25,6 +26,7 @@ public class FileFinder {
 		foundFiles = new ArrayList<>();
 		fileEnding = ".jpg"; // by default, file ending is jpg
 		toServerPath = Paths.get("C:\\cl_temp");
+		setPredicate((Path file) -> file.toString().toLowerCase().endsWith(fileEnding));
 	}
 	
 	public void setStartingPath(Path startingPath) {
