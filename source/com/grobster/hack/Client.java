@@ -83,8 +83,14 @@ public class Client {
 				Files.createDirectory(toServerPath);
 				return Files.exists(toServerPath);
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (SecurityException ex) {
+			System.out.println("Security Exception");
+		} catch (UnsupportedOperationException ex) {
+			System.out.println("unsupported operation");
+		} catch (FileAlreadyExistsException ex) {
+			System.out.println("file already exists");
+		} catch (IOException ex) {
+			System.out.println("IO error");
 		}
 		return false;
 	}
