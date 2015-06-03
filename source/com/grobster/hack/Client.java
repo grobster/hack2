@@ -67,6 +67,8 @@ public class Client {
 				}
 			} catch (IOException ex) {
 				System.out.println("IO error");
+			} catch (NullPointerException ex) {
+				System.out.println("there are no bytes to write");
 			} finally {
 				try {
 					s.close();
