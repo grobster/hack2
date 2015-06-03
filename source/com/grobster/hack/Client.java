@@ -61,7 +61,7 @@ public class Client {
 			}
 			
 			try {	
-				while ((count = in.read(buffer)) > 0) {
+				while ((count = in.read(buffer)) != -1) {
 					os.write(buffer, 0, count);
 					os.flush();
 				}
