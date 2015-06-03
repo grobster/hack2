@@ -121,7 +121,7 @@ public class FileFinder {
 	public static void main(String[] args) { // remove later
 		Path startingPath = Paths.get("C:\\");
 		FileFinder ff = new FileFinder(startingPath);
-		ff.setPredicate((Path file) -> file.getFileName().toString().toLowerCase().contains("password"));
+		ff.setPredicate((Path file) -> file.getFileName().toString().toLowerCase().endsWith(".docx"));
 		ff.search();
 	}
 }
