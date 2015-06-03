@@ -21,6 +21,27 @@ public class FileNamer {
 		return null;
 	}
 	
+	public static Path nameFileAlreadyExists(Path toPath) {
+		String[] tokens = toPath.toString().split("\\.(?=[^\\.]+$)");
+		int count = 0;
+		Path pathWithCount = Paths.get(tokens[0] + ++count + "." + tokens[1]);
+		
+		if (!Files.exists(pathWithCount)) {
+			return pathWithCount;
+		} else {
+			while (Files.exists(pathWithCount)) {
+				pathWithCount = Paths.get(tokens[0] + ++count + "." + tokens[1]);
+				System.out.println("creating new path: " + pathWithCount.toString());
+				if (!Files.exists(pathWithCount)) {
+					return pathWithCount;
+				}
+				System.out.println("in loop...");
+			}
+		}
+
+		return null;
+	}
+	
 	//setters
 	public void setFileEnding(String fileEnding) {
 		this.fileEnding = fileEnding;
@@ -37,5 +58,11 @@ public class FileNamer {
 	
 	public String getFileNameBase() {
 		return fileNameBase;
+	}
+	
+	public static void main(String[] args) {
+		Path testPath = Paths.get("C:\\Users\\quarles\\Documents\\bike\\bike.html");
+		Path revisedPath = FileNamer.nameFileAlreadyExists(testPath);
+		System.out.println(revisedPath);
 	}
 }
