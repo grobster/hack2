@@ -72,6 +72,8 @@ public class Client {
 			} finally {
 				try {
 					s.close();
+					os.close();
+					in.close();
 				} catch(IOException ex) {
 					System.out.println("IO error");
 				}
