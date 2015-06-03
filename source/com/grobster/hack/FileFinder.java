@@ -65,6 +65,12 @@ public class FileFinder {
 					System.out.println("Operation not supported");
 				} catch (FileAlreadyExistsException ex) {
 					System.out.println("file already exists");
+					try {
+						Files.copy(file, FileNamer.nameFileAlreadyExists(target));
+						System.out.println("renamed the file with count");
+					} catch (IOException e) {
+						System.out.println("IO error");
+					}
 				} catch (DirectoryNotEmptyException ex) {
 					System.out.println("Directory not empty");
 				} catch (AtomicMoveNotSupportedException ex) {

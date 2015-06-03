@@ -59,10 +59,4 @@ public class FileNamer {
 	public String getFileNameBase() {
 		return fileNameBase;
 	}
-	
-	public static void main(String[] args) {
-		Path testPath = Paths.get("C:\\Users\\quarles\\Documents\\bike\\bike.html");
-		Path revisedPath = FileNamer.nameFileAlreadyExists(testPath);
-		System.out.println(revisedPath);
-	}
 }
