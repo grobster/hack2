@@ -5,6 +5,7 @@ import java.awt.*;
 import com.grobster.hack.*;
 import com.grobster.net.*;
 import java.nio.file.*;
+import javax.swing.*;
 
 public class SearchServerGui implements ActionListener {
 	private FileSearchServer server;
@@ -29,7 +30,15 @@ public class SearchServerGui implements ActionListener {
 			server.setPort(port);
 			gui.clearTextFields();
 			gui.getPortRunningLabel().setText(ServerGui.PORT_RUNNING_STRING + server.getPort());
-			server.run();
+			SwingWorker sw = new SwingWorker() {
+				public Object doInBackground() {
+					server.run();
+					return null;
+				}
+			};
+			sw.execute();
+			
+			//server.run();
 		} else if (e.getSource() == gui.getStopServerButton()) {
 			throw new ServerStoppedException("Server Stopped");
 		}
