@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 import com.grobster.hack.*;
 import java.nio.file.*;
+import javax.swing.*;
 
 public class FileSearchClient implements ActionListener {
 	private ClientGui gui;
@@ -33,7 +34,14 @@ public class FileSearchClient implements ActionListener {
 			client.setHost(host);
 			
 			finder.search();
-			client.go();
+			SwingWorker sw = new SwingWorker() {
+				public Object doInBackground() {
+					client.go();
+					return null;
+				}
+			};
+			sw.execute();
+			//client.go();
 		}
 	}
 	
