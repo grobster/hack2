@@ -1,4 +1,8 @@
-Main-Class: com.grobster.gui.FileSearchClient
+Main-Class: com.grobster.gui.SearchServerGui
+
+
+
+
 
 
 
