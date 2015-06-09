@@ -50,7 +50,7 @@ public class Client {
 			}
 				
 			int count;
-			byte[] buffer =  new byte[8 * 1024];
+			byte[] buffer =  new byte[4 * 1024];
 			
 			BufferedOutputStream bos = null;
 			
