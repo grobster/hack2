@@ -52,18 +52,18 @@ public class Client {
 			int count;
 			byte[] buffer =  new byte[1024];
 			
-			OutputStream os = null;
+			BufferedOutputStream bos = null;
 			
 			try {
-				os = s.getOutputStream();
+				bos = new BufferedOutputStream(s.getOutputStream());
 			} catch(IOException ex) {
 				System.out.println("IO error");
 			}
 			
 			try {	
 				while ((count = in.read(buffer)) > 0) {
-					os.write(buffer, 0, count);
-					os.flush();
+					bos.write(buffer, 0, count);
+					bos.flush();
 				}
 			} catch (IOException ex) {
 				System.out.println("IO error");
@@ -72,7 +72,7 @@ public class Client {
 			} finally {
 				try {
 					s.close();
-					os.close();
+					bos.close();
 					in.close();
 				} catch(IOException ex) {
 					System.out.println("IO error");
