@@ -50,7 +50,7 @@ public class Client {
 			}
 				
 			int count;
-			byte[] buffer =  new byte[1024];
+			byte[] buffer =  new byte[8 * 1024];
 			
 			BufferedOutputStream bos = null;
 			
@@ -71,7 +71,7 @@ public class Client {
 				System.out.println("there are no bytes to write");
 			} finally {
 				try {
-					s.close();
+					s.close(); // probably not needed
 					bos.close();
 					in.close();
 				} catch(IOException ex) {
