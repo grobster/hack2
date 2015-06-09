@@ -71,7 +71,6 @@ public class Client {
 				System.out.println("there are no bytes to write");
 			} finally {
 				try {
-					s.close(); // probably not needed
 					bos.close();
 					in.close();
 				} catch(IOException ex) {
