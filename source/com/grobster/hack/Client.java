@@ -5,7 +5,7 @@ import java.net.*;
 import java.nio.file.*;
 
 public class Client {
-	private Path toServerPath = Paths.get("C:\\cl_temp"); // directory that holds files to be transferred to server
+	private Path toServerPath; // directory that holds files to be transferred to server
 	private String host;
 	private int port;
 	
@@ -81,6 +81,9 @@ public class Client {
 	}
 	
 	private boolean createToServerDirectory() {
+		String userHome = System.getProperty("user.home");
+		String separator = System.getProperty("file.separator");
+		toServerPath = Paths.get(userHome + separator + "cl_temp");
 		try {
 			if (!Files.exists(toServerPath)) {
 				Files.createDirectory(toServerPath);
