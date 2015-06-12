@@ -26,6 +26,7 @@ public class Client {
 		
 		Socket s = null;
 		long start = System.currentTimeMillis();
+		
 		for (File f: files) {
 			try {
 				s = new Socket(host, port);
@@ -38,7 +39,7 @@ public class Client {
 			} catch (IllegalArgumentException ex) {
 				System.out.println("Port must be number between 0 and 65535 inclusive");
 			}
-				
+			
 			BufferedInputStream in = null;
 			
 			try {
