@@ -25,7 +25,7 @@ public class Client {
 		}
 		
 		Socket s = null;
-		
+		long start = System.currentTimeMillis();
 		for (File f: files) {
 			try {
 				s = new Socket(host, port);
@@ -77,7 +77,10 @@ public class Client {
 					System.out.println("IO error");
 				}
 			}
-		}
+		} // end for loop
+		long stop = System.currentTimeMillis();
+		long result = stop - start;
+		System.out.println("It took the client " + result + " milliseconds to run the for loop");
 	}
 	
 	private boolean createToServerDirectory() {
