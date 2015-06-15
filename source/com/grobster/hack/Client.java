@@ -12,7 +12,7 @@ public class Client {
 	public Client() {
 		host = "127.0.0.1";
 		port = 4242;
-		toServerPath = FileNamer.createToServerDirectory(); //creates temp folder used to hold jpg prior to sending to server
+		toServerPath = Paths.get(System.getProperty("user.home") + System.getProperty("file.separator") + "cl_temp");
 	}
 	
 	public void go() {

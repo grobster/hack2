@@ -46,9 +46,10 @@ public class FileSearchClient implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
+		FileNamer.createToServerDirectory();
 		ClientGui gui = new ClientGui("Client", 300, 300);
-		Client client = new Client();
 		FileFinder ff = new FileFinder();
+		Client client = new Client();
 		FileSearchClient clientGui = new FileSearchClient(gui, client, ff);
 		clientGui.createView(20, "Enter", "Host: ", "Port: ", "Path: ");
 	}
