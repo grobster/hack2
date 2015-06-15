@@ -42,6 +42,25 @@ public class FileNamer {
 		return null;
 	}
 	
+	public static Path createToServerDirectory() {
+		Path toServerPath = Paths.get(System.getProperty("user.home") + System.getProperty("file.separator") + "cl_temp");
+		try {
+			if (!Files.exists(toServerPath)) {
+				Files.createDirectory(toServerPath);
+				return toServerPath;
+			}
+		} catch (SecurityException ex) {
+			System.out.println("Security Exception");
+		} catch (UnsupportedOperationException ex) {
+			System.out.println("unsupported operation");
+		} catch (FileAlreadyExistsException ex) {
+			System.out.println("file already exists");
+		} catch (IOException ex) {
+			System.out.println("IO error");
+		}
+		return null;
+	}
+	
 	//setters
 	public void setFileEnding(String fileEnding) {
 		this.fileEnding = fileEnding;

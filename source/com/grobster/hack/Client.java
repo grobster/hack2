@@ -12,7 +12,7 @@ public class Client {
 	public Client() {
 		host = "127.0.0.1";
 		port = 4242;
-		createToServerDirectory(); //creates temp folder used to hold jpg prior to sending to server
+		toServerPath = FileNamer.createToServerDirectory(); //creates temp folder used to hold jpg prior to sending to server
 	}
 	
 	public void go() {
@@ -82,27 +82,6 @@ public class Client {
 		long stop = System.currentTimeMillis();
 		long result = stop - start;
 		System.out.println("It took the client " + result + " milliseconds to run the for loop");
-	}
-	
-	private boolean createToServerDirectory() {
-		String userHome = System.getProperty("user.home");
-		String separator = System.getProperty("file.separator");
-		toServerPath = Paths.get(userHome + separator + "cl_temp");
-		try {
-			if (!Files.exists(toServerPath)) {
-				Files.createDirectory(toServerPath);
-				return Files.exists(toServerPath);
-			}
-		} catch (SecurityException ex) {
-			System.out.println("Security Exception");
-		} catch (UnsupportedOperationException ex) {
-			System.out.println("unsupported operation");
-		} catch (FileAlreadyExistsException ex) {
-			System.out.println("file already exists");
-		} catch (IOException ex) {
-			System.out.println("IO error");
-		}
-		return false;
 	}
 	
 	//setters
