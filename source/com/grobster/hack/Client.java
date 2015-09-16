@@ -31,7 +31,7 @@ public class Client {
 		long start = System.currentTimeMillis();
 		
 		for (File f: files) {
-			if (!alreadyUploadedCheck(f.getName())) {
+			if (alreadyUploadedCheck(f.getName()) == false) {
 				try {
 					s = new Socket(host, port);
 				} catch (UnknownHostException ex) {
@@ -94,6 +94,7 @@ public class Client {
 	
 	private boolean alreadyUploadedCheck(String fileName) {
 		if (hm.containsKey(fileName)) {
+			System.out.println("key found in map");
 			return hm.get(fileName).booleanValue();
 		}
 		return false;
