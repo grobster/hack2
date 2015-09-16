@@ -16,6 +16,7 @@ public class Client {
 		port = 4242;
 		toServerPath = Paths.get(System.getProperty("user.home") + System.getProperty("file.separator") + "cl_temp");
 		hm = new HashMap<>();
+		setExistingFileUploadStatus();
 	}
 	
 	public void go() {
@@ -98,6 +99,20 @@ public class Client {
 			return hm.get(fileName).booleanValue();
 		}
 		return false;
+	}
+	
+	private void setExistingFileUploadStatus() {
+		File[] files = null;
+		
+		try {
+			files = toServerPath.toFile().listFiles();
+		} catch (SecurityException ex) {
+			System.out.println("security exception");
+		}
+		
+		for (File f: files) {
+			hm.put(f.getName(), true);
+		}
 	}
 	
 	//setters
