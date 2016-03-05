@@ -30,6 +30,7 @@ public class SearchServerGui implements ActionListener {
 			server.setPort(port);
 			gui.clearTextFields();
 			gui.getPortRunningLabel().setText(ServerGui.PORT_RUNNING_STRING + server.getPort());
+			gui.getColorLabel().setBackground(Color.green);
 			SwingWorker sw = new SwingWorker() {
 				public Object doInBackground() {
 					server.run();
@@ -40,7 +41,9 @@ public class SearchServerGui implements ActionListener {
 			
 			//server.run();
 		} else if (e.getSource() == gui.getStopServerButton()) {
+			gui.getColorLabel().setBackground(Color.red);
 			throw new ServerStoppedException("Server Stopped");
+			
 		}
 	}
 	
